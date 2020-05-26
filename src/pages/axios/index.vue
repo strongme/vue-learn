@@ -1,13 +1,29 @@
+<route-meta>
+  {
+  "title": "Axios"
+  }
+</route-meta>
+
 <template>
-    $END$
+  <story-container>
+    Axios
+    <button @click="doGet">DO GET</button>
+  </story-container>
 </template>
 
 <script>
-	export default {
-		name: "index"
-	}
+import axios from 'axios'
+
+export default {
+  name: 'axios',
+  methods: {
+    doGet () {
+      return axios({
+        url: `http://www.google.com/search?pids=${[1, 2, 3]}`,
+        method: 'get'
+      })
+    }
+  }
+
+}
 </script>
-
-<style scoped>
-
-</style>
