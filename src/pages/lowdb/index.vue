@@ -1,6 +1,6 @@
 <route-meta>
   {
-    "title": "LowDB-LocalStorage"
+    "title": "LowDB"
   }
 </route-meta>
 
@@ -36,7 +36,7 @@ import { addPost, getPosts, clearPost } from '@/utils/DBUtils'
 import dayjs from 'dayjs'
 
 export default {
-  name: 'lowdb-localStorage',
+  name: 'lowdb',
   data () {
     return {
       posts: []

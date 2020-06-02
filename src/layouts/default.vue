@@ -65,7 +65,6 @@ export default {
             <router-view/>
           </overlay-scrollbars>
         </div>
-        <github-ribbon/>
       </div>
     return node
   },

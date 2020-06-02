@@ -1,26 +1,66 @@
 <route-meta>
-  {
-  "title": "Axios"
-  }
+  { "title": "Axios" }
 </route-meta>
 
 <template>
   <story-container>
-    Axios
-    <button @click="doGet">DO GET</button>
+    <avue-crud
+      :data="data"
+      :option="option"
+      v-model="form"
+      @search-change="loadData"
+    />
   </story-container>
 </template>
 
 <script>
-import axios from 'axios'
+import api from '@/api'
 
 export default {
   name: 'axios',
+  data () {
+    return {
+      form: {},
+      data: [],
+      option: {
+        title: '表格的标题',
+        page: false,
+        align: 'center',
+        menuAlign: 'center',
+        column: [
+          {
+            label: '姓名',
+            prop: 'name',
+            search: true
+          },
+          {
+            label: '手机',
+            prop: 'mobile',
+            search: true
+          },
+          {
+            label: '邮箱',
+            prop: 'email',
+            search: true
+          }
+        ]
+      }
+    }
+  },
+  mounted () {
+    this.loadData()
+  },
   methods: {
-    doGet () {
-      return axios({
-        url: `http://www.google.com/search?pids=${[1, 2, 3]}`,
-        method: 'get'
+    loadData (params, done) {
+      this.data = []
+      api.DEMO_LIST(true).then(res => {
+        done && done()
+        const { code, data } = res.data
+        if (code === 0) {
+          this.data = data
+        }
+      }).catch(error => {
+        this.$message.error(error)
       })
     }
   }
